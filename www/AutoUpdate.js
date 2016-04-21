@@ -93,7 +93,7 @@ var AutoUpdate = {
 					case 'js':
                         var id = "js_"+file+"_"+version;
                         var elem = document.getElementById(id);
-                        if (null !== elem){
+                        if (null === elem){
                             var script = document.createElement('script');
                             script.src = path + '?version=' + version;
                             script.setAttribute("id",id);
@@ -103,7 +103,7 @@ var AutoUpdate = {
 					case 'css':
                         var id = "css_"+file+"_"+version;
                         var elem = document.getElementById(id);
-                        if (null !== elem){
+                        if (null === elem){
                             var link = document.createElement('link');
                             link.href = path + '?version=' + version;
                             link.rel = 'stylesheet';
