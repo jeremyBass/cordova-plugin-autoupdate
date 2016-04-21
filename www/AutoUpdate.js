@@ -114,7 +114,7 @@ var AutoUpdate = {
 					case 'js':
                         var src = path + '?version=' + version;
                         console.log("Trying to adding "+src);
-                        if (!findScript(src)){
+                        if (!AutoUpdate.findScript(src)){
                             console.log("adding "+src);
                             var script = document.createElement('script');
                             script.src = src;
@@ -125,7 +125,7 @@ var AutoUpdate = {
 					case 'css':
                         var src = path + '?version=' + version;
                         console.log("Trying to adding "+src);
-                        if (!findLink(src)){
+                        if (!AutoUpdate.findLink(src)){
                             console.log("adding "+src);
                             var link = document.createElement('link');
                             link.href = src;
