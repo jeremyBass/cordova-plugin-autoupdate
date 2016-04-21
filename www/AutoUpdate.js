@@ -56,6 +56,7 @@ var AutoUpdate = {
 		});
 	},
     findScript: function(path){
+        console.log(path);
       var scripts = document.getElementsByTagName('script');
       for(var i = 0, l = scripts.length; i < l; i++){
         if(scripts[i].src === path){
@@ -66,6 +67,7 @@ var AutoUpdate = {
         return false;
     },
     findLink: function(path){
+        console.log(path);
       var scripts = document.getElementsByTagName('link');
       for(var i = 0, l = scripts.length; i < l; i++){
         if(scripts[i].href === path){
@@ -111,7 +113,9 @@ var AutoUpdate = {
 				switch (file.type) {
 					case 'js':
                         var src = path + '?version=' + version;
+                        console.log("Trying to adding "+src);
                         if (!findScript(src)){
+                            console.log("adding "+src);
                             var script = document.createElement('script');
                             script.src = src;
                             script.setAttribute("id",id);
@@ -120,7 +124,9 @@ var AutoUpdate = {
 						break;
 					case 'css':
                         var src = path + '?version=' + version;
+                        console.log("Trying to adding "+src);
                         if (!findLink(src)){
+                            console.log("adding "+src);
                             var link = document.createElement('link');
                             link.href = src;
                             link.rel = 'stylesheet';
