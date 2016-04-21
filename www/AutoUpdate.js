@@ -91,15 +91,25 @@ var AutoUpdate = {
 
 				switch (file.type) {
 					case 'js':
-						var script = document.createElement('script');
-						script.src = path + '?version=' + version;
-						document.getElementsByTagName("head")[0].appendChild( script );
+                        var id = "js_"+file+"_"+version;
+                        var elem = document.getElementById('myElementId');
+                        if (null !== elem){
+                            var script = document.createElement('script');
+                            script.src = path + '?version=' + version;
+                            script.setAttribute("id",id);
+                            document.getElementsByTagName("head")[0].appendChild( script );
+                        }
 						break;
 					case 'css':
-						var link = document.createElement('link');
-						link.href = path + '?version=' + version;
-						link.rel = 'stylesheet';
-						document.getElementsByTagName("head")[0].appendChild( link );
+                        var id = "css_"+file+"_"+version;
+                        var elem = document.getElementById('myElementId');
+                        if (null !== elem){
+                            var link = document.createElement('link');
+                            link.href = path + '?version=' + version;
+                            link.rel = 'stylesheet';
+                            link.setAttribute("id", "css_"+file+"_"+version);
+                            document.getElementsByTagName("head")[0].appendChild( link );
+                        }
 						break;
 					default:
 						console.warning('This filetype is not supported yet.');
