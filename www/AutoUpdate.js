@@ -116,9 +116,9 @@ var AutoUpdate = {
 			var res = {};
 			if(localStorage['cordova-plugin-autoupdate:' + path]) {
 				// check if files still available local
-				window.resolveLocalFileSystemURL(cordova.file.cacheDirectory + path,
+				window.resolveLocalFileSystemURL(cordova.file.dataDirectory + path,
 					function(){
-						res[path] = cordova.file.cacheDirectory + path;
+						res[path] = cordova.file.dataDirectory + path;
 						resolve(res);
 					},
 					function(){
@@ -159,7 +159,7 @@ var AutoUpdate = {
 			var transfer = new FileTransfer();
 			transfer.download(
 				encodeURI(file.url),
-				cordova.file.cacheDirectory + key,
+				cordova.file.dataDirectory + key,
 				function(entry) {
 					localStorage['cordova-plugin-autoupdate:' + key] = file.version;
 					resolve();
