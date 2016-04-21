@@ -55,7 +55,26 @@ var AutoUpdate = {
 
 		});
 	},
-
+    findScript: function(path){
+      var scripts = document.getElementsByTagName('script');
+      for(var i = 0, l = scripts.length; i < l; i++){
+        if(scripts[i].src === path){
+          return true;
+          break;
+        }
+      }
+        return false;
+    },
+    findLink: function(path){
+      var scripts = document.getElementsByTagName('link');
+      for(var i = 0, l = scripts.length; i < l; i++){
+        if(scripts[i].href === path){
+          return true;
+          break;
+        }
+      }
+        return false;
+    },
 	serialize: function(files) {
 		var v = {}
 		Object.keys(files).forEach(function(path){
@@ -91,21 +110,19 @@ var AutoUpdate = {
 
 				switch (file.type) {
 					case 'js':
-                        var id = "js_"+file+"_"+version;
-                        var elem = document.getElementById(id);
-                        if (null === elem){
+                        var src = path + '?version=' + version;
+                        if (!findScript(src)){
                             var script = document.createElement('script');
-                            script.src = path + '?version=' + version;
+                            script.src = src;
                             script.setAttribute("id",id);
                             document.getElementsByTagName("head")[0].appendChild( script );
                         }
 						break;
 					case 'css':
-                        var id = "css_"+file+"_"+version;
-                        var elem = document.getElementById(id);
-                        if (null === elem){
+                        var src = path + '?version=' + version;
+                        if (!findLink(src)){
                             var link = document.createElement('link');
-                            link.href = path + '?version=' + version;
+                            link.href = src;
                             link.rel = 'stylesheet';
                             link.setAttribute("id", "css_"+file+"_"+version);
                             document.getElementsByTagName("head")[0].appendChild( link );
